@@ -68,15 +68,10 @@ public class PlayerController : MonoBehaviour
         SceneTransition = GameObject.FindGameObjectWithTag("FadePanel").GetComponent<Animator>();
 
 
-        //  stopsign = GameObject.FindGameObjectWithTag("Stop");
+       
         mPlayer = this.gameObject;
         sr = GetComponent<SpriteRenderer>();
-        //  noOfMoves = GameObject.FindGameObjectWithTag("EnergyLeft").GetComponent<Text>();
-        //  noOfMoves.text = Moves.ToString();
-
-
-        // Switch to 640 x 480 full-screen
-           // Screen.SetResolution(640, 480, true);
+       
         
     }
 
@@ -86,29 +81,20 @@ public class PlayerController : MonoBehaviour
     void Update()
 
     {
-       // Screen.SetResolution(320, 180, true);
-        // Debug.Log(Vector3.Distance(transform.position, Destination));
-        // Debug.Log(Mathf.Epsilon);
-
-        //  if (!Manager.instance.Mobile)
-        //  {
+      
         if (!isDead)
         {
             Bats = GameObject.FindGameObjectsWithTag("Bat");
             if (Vector3.Distance(transform.position, Destination) < Mathf.Epsilon /*&& !PushableBlock.instance.isPushed && !PushableBlock.instance.isHooked*/)
             {
 
-                //Debug.Log(Input.GetAxisRaw("Horizontal"));
-                //Debug.Log(Input.GetAxisRaw("Vertical"));
-                //Debug.Log(CheckDirection(Vector3.right));
+             
 
                 if (Input.GetAxisRaw("Horizontal") > 0)
                 {
                     sr.flipX = false;
                     isUndoing = false;
 
-                  // if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
-                   // {
                         if (CheckDirection(Vector3.right))
                         {
 
@@ -121,21 +107,18 @@ public class PlayerController : MonoBehaviour
 
                            Destination = transform.position + Vector3.right;
 
-                        //    Icommand command = new PlayerMoveCommand(this.gameObject, Vector3.right);
-                        //CommandInvoker.AddCommand(command);
-                          //  PlayerMovement.PlayerMove(this.gameObject, Vector3.right);        //  Playermove functinality in a diffrent script
+                          
                             AudioManager.instance.PlaySfx(1);
 
 
                         }
-                    //}
+                   
                 }
                 else if (Input.GetAxisRaw("Horizontal") < 0)
                 {
                     sr.flipX = true;
                     isUndoing = false;
-                  //  if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
-                   // {
+                 
                         if (CheckDirection(Vector3.left))
                         {
                             foreach (GameObject Bat in Bats)
@@ -145,22 +128,19 @@ public class PlayerController : MonoBehaviour
 
                             Destination = transform.position + Vector3.left;
 
-                            // Destination = mPlayer.transform.position;
+                           
 
-                            //Icommand command = new PlayerMoveCommand(this.gameObject, Vector3.left);
-                            //CommandInvoker.AddCommand(command);
-                            //  PlayerMovement.PlayerMove(this.gameObject, Vector3.left);
+                           
                             AudioManager.instance.PlaySfx(1);
 
 
                         }
-                  //  }
+                
                 }
                 else if (Input.GetAxisRaw("Vertical") > 0)
                 {
                     isUndoing = false;
-                   // if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-                   // {
+                  
 
                         if (CheckDirection(Vector3.up))
                         {
@@ -171,21 +151,17 @@ public class PlayerController : MonoBehaviour
 
                             Destination = transform.position + Vector3.up;
 
-                            //Icommand command = new PlayerMoveCommand(this.gameObject, Vector3.up);
-                            //CommandInvoker.AddCommand(command);
-
-                            //  PlayerMovement.PlayerMove(this.gameObject, Vector3.up);
+                         
                             AudioManager.instance.PlaySfx(1);
 
 
                         }
-                    //}
+                    
                 }
                 else if (Input.GetAxisRaw("Vertical") < 0)
                 {
                     isUndoing = false;
-                  //  if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-                  // {
+                
                         if (CheckDirection(Vector3.down))
                         {
                             foreach (GameObject Bat in Bats)
@@ -195,18 +171,15 @@ public class PlayerController : MonoBehaviour
 
                             Destination = transform.position + Vector3.down;
 
-                            //Icommand command = new PlayerMoveCommand(this.gameObject, Vector3.down);
-                            //CommandInvoker.AddCommand(command);
-
-                            // PlayerMovement.PlayerMove(this.gameObject, Vector3.down);
+                           
                             AudioManager.instance.PlaySfx(1);
 
 
                         }
-                   // }
+                 
                 }
 
-                //}
+               
 
             }
             else
@@ -228,41 +201,14 @@ public class PlayerController : MonoBehaviour
 
       
 }
-    private void replaylevel()
-    {
+     public void replaylevel()
+     {
 
-       // ReplayEvent(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
-    }
+     }
 
-    //private bool CheckDirection(Vector3 direction)
-    //{  
-
-    //    // Debug.DrawRay(transform.position, direction);
-
-    //   .// RaycastHit2D hit = Physics2D.Raycast(transform.position, direction);
-    //    if (Physics.Raycast(transform.position, direction, out RaycastHit hit,   detectionRadius, BlockMask))
-    //    {
-    //        Debug.DrawRay(transform.position, direction);
-
-    //        if (hit.collider.CompareTag("Pushable"))
-    //        {
-
-    //            PushableBlock pushableBlock = hit.collider.GetComponent<PushableBlock>();
-    //            Debug.Log("BlockFound");
-
-    //            if (!pushableBlock)
-    //            {
-    //                return false;
-    //            }
-    //              pushableBlock.Push(direction, speed);
-
-
-    //        }
-    //        return false;
-    //    }
-    //    return true;
-    //}
+ 
 
 
     public void MovePlayer(Vector3 direction)
@@ -315,29 +261,125 @@ public class PlayerController : MonoBehaviour
             }
             return false;
         }
-        //if (hit1)
-        //{
-        //    string tag = hit1.transform.tag;
-
-        //    if (hit1.collider.gameObject.CompareTag("Pushable"))
-        //    {
-        //        PushableBlock pushableBlock = hit1.collider.GetComponent<PushableBlock>();
-
-
-        //        if (!pushableBlock)
-        //            return false;
-
-
-        //        pushableBlock.Push(direction, speed);
-
-
-
-        //    }
-        //    return false;
-        //}
+      
      
         return true;
        
+    }
+
+    public void MoveRight()
+    {
+        if (!isDead)
+        {
+            sr.flipX = false;
+            isUndoing = false;
+
+            if (CheckDirection(Vector3.right))
+            {
+
+                foreach (GameObject Bat in Bats)
+                {
+                    Bat.GetComponent<BatMove>().batMove();
+                }
+
+
+
+                Destination = transform.position + Vector3.right;
+
+
+                AudioManager.instance.PlaySfx(1);
+
+
+            }
+
+
+        }
+    }
+
+    public void MoveLeft()
+    {
+        if (!isDead)
+        {
+            sr.flipX = false;
+            isUndoing = false;
+
+            if (CheckDirection(Vector3.left))
+            {
+
+                foreach (GameObject Bat in Bats)
+                {
+                    Bat.GetComponent<BatMove>().batMove();
+                }
+
+
+
+                Destination = transform.position + Vector3.left;
+
+
+                AudioManager.instance.PlaySfx(1);
+
+
+            }
+
+
+        }
+    }
+
+    public void MoveUp()
+    {
+        if (!isDead)
+        {
+            sr.flipX = false;
+            isUndoing = false;
+
+            if (CheckDirection(Vector3.up))
+            {
+
+                foreach (GameObject Bat in Bats)
+                {
+                    Bat.GetComponent<BatMove>().batMove();
+                }
+
+
+
+                Destination = transform.position + Vector3.up;
+
+
+                AudioManager.instance.PlaySfx(1);
+
+
+            }
+
+
+        }
+    }
+    public void MoveDown()
+    {
+        if (!isDead)
+        {
+            sr.flipX = false;
+            isUndoing = false;
+
+            if (CheckDirection(Vector3.down))
+            {
+
+                foreach (GameObject Bat in Bats)
+                {
+                    Bat.GetComponent<BatMove>().batMove();
+                }
+
+
+
+                Destination = transform.position + Vector3.down;
+
+
+                AudioManager.instance.PlaySfx(1);
+
+
+            }
+
+
+        }
     }
 
     public void Right()
@@ -375,6 +417,8 @@ public class PlayerController : MonoBehaviour
             Destination = transform.position + Vector3.down;
             AudioManager.instance.PlaySfx(1);
         }
+
+
     }
 
     //private void OnTriggerStay2D(Collider2D other)
