@@ -7225,7 +7225,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2485983055289002598, guid: a15f50df7ad16954b91b119ec6252ae1, type: 3}
       propertyPath: m_UpscaleRT
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2485983055289002598, guid: a15f50df7ad16954b91b119ec6252ae1, type: 3}
       propertyPath: m_CropFrameX

@@ -30,16 +30,8 @@ public class MobileMovement : MonoBehaviour
     }
 
    
-    [DllImport("__Internal")]
-    private static extern bool IsMobile();
-
-    public bool isMobile()
-    {
-#if !UNITY_EDITOR && UNITY_WEBGL
-            return IsMobile();
-#endif
-        return false;
-    }
+  
+  
     public void Restart()
     {
         PlayerController.instance.replaylevel();
